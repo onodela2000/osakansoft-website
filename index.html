@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>合同会社おさかなソフト | 小田原市のぷろぐらみん屋さん</title>
+<meta name="description" content="合同会社おさかなソフトは、小田原市のぷろぐらみん屋さん。Webサイト制作・システム開発・ITコンサルティングなど、お客様の課題をテクノロジーで解決します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Variables ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --deep-blue: #0b3d5c;
+  --ocean: #1a6b8a;
+  --teal: #2a9d8f;
+  --seafoam: #5cc8b9;
+  --light-aqua: #d4f1ed;
+  --sand: #faf6f0;
+  --warm-sand: #f5efe5;
+  --white: #ffffff;
+  --text: #2c3e50;
+  --text-light: #5a7184;
+  --accent: #e76f51;
+  --font-jp: 'Zen Maru Gothic', 'Hiragino Sans', sans-serif;
+  --font-en: 'Outfit', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-jp);
+  color: var(--text);
+  background: var(--sand);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+/* ── Wave Dividers ── */
+.wave-divider {
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+}
+.wave-divider svg {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+.wave-divider.flip { transform: scaleY(-1); }
+
+/* ── Header ── */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(42,157,143,0.12);
+  transition: box-shadow 0.3s;
+}
+header.scrolled {
+  box-shadow: 0 2px 24px rgba(11,61,92,0.08);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--deep-blue);
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+}
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+nav { display: flex; gap: 24px; }
+nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.88rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--teal);
+  border-radius: 1px;
+  transition: width 0.3s;
+}
+nav a:hover { color: var(--ocean); }
+nav a:hover::after { width: 100%; }
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--deep-blue);
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(170deg, var(--deep-blue) 0%, var(--ocean) 40%, var(--teal) 100%);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-bg .bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  animation: float 8s ease-in-out infinite;
+}
+.hero-bg .bubble:nth-child(1) { width: 300px; height: 300px; top: 10%; left: -5%; animation-delay: 0s; }
+.hero-bg .bubble:nth-child(2) { width: 200px; height: 200px; top: 60%; right: -3%; animation-delay: 2s; }
+.hero-bg .bubble:nth-child(3) { width: 150px; height: 150px; bottom: 10%; left: 30%; animation-delay: 4s; }
+.hero-bg .bubble:nth-child(4) { width: 100px; height: 100px; top: 20%; right: 20%; animation-delay: 1s; }
+.hero-bg .bubble:nth-child(5) { width: 80px; height: 80px; top: 50%; left: 15%; animation-delay: 3s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+/* Fish swimming animation */
+.hero-fish {
+  position: absolute;
+  opacity: 0.08;
+  animation: swim 20s linear infinite;
+}
+.hero-fish:nth-child(1) { top: 30%; animation-duration: 18s; }
+.hero-fish:nth-child(2) { top: 60%; animation-duration: 24s; animation-delay: 6s; }
+.hero-fish:nth-child(3) { top: 45%; animation-duration: 22s; animation-delay: 12s; }
+
+@keyframes swim {
+  0% { left: -10%; transform: scaleX(1); }
+  49% { transform: scaleX(1); }
+  50% { left: 110%; transform: scaleX(-1); }
+  99% { transform: scaleX(-1); }
+  100% { left: -10%; transform: scaleX(1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--white);
+  padding: 0 24px;
+}
+.hero-content .fish-mark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-content .en-name {
+  font-family: var(--font-en);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-content .tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 2;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  line-height: 0;
+}
+.hero-wave svg {
+  width: 100%;
+  height: 100px;
+  display: block;
+}
+
+/* ── Section Common ── */
+section {
+  padding: 80px 24px;
+}
+.section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-title .en {
+  font-family: var(--font-en);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 8px;
+}
+.section-title h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--deep-blue);
+  position: relative;
+  display: inline-block;
+}
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--seafoam));
+  border-radius: 2px;
+}
+
+/* ── Concept Section ── */
+.concept {
+  background: var(--sand);
+  position: relative;
+}
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.concept-visual {
+  position: relative;
+  height: 360px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--light-aqua), var(--seafoam));
+}
+.concept-visual svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.concept-text h3 {
+  font-size: 1.35rem;
+  color: var(--deep-blue);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.concept-text p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+
+/* ── Services Section ── */
+.services {
+  background: var(--white);
+  position: relative;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.service-card {
+  background: var(--sand);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--seafoam));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(11,61,92,0.08);
+}
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+.service-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--teal), var(--ocean));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: white;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.service-card h3 {
+  font-size: 1.05rem;
+  color: var(--deep-blue);
+  margin-bottom: 12px;
+}
+.service-card p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* ── Company Section ── */
+.company {
+  background: var(--sand);
+  position: relative;
+}
+.company-table {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(11,61,92,0.04);
+}
+.company-table dl {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+}
+.company-table dt,
+.company-table dd {
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(42,157,143,0.08);
+  font-size: 0.92rem;
+}
+.company-table dt {
+  background: var(--light-aqua);
+  color: var(--deep-blue);
+  font-weight: 500;
+}
+.company-table dd {
+  color: var(--text);
+}
+.company-table dt:last-of-type,
+.company-table dd:last-of-type {
+  border-bottom: none;
+}
+
+/* ── Contact Section ── */
+.contact {
+  background: linear-gradient(170deg, var(--ocean), var(--deep-blue));
+  position: relative;
+  overflow: hidden;
+}
+.contact .section-title .en { color: var(--seafoam); }
+.contact .section-title h2 { color: var(--white); }
+.contact .section-title h2::after { background: linear-gradient(90deg, var(--seafoam), var(--accent)); }
+.contact-body {
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+  line-height: 2;
+}
+.contact-body .note {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 16px 36px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+.contact-wave {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 2;
+}
+.contact-wave svg {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+
+/* ── Footer ── */
+footer {
+  background: #072a3e;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 0.8rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.05em;
+}
+
+/* ── Scroll Animations ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  nav { display: none; }
+  nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(42,157,143,0.12);
+  }
+  .mobile-toggle { display: flex; }
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .concept-visual { height: 240px; }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .company-table dl {
+    grid-template-columns: 1fr;
+  }
+  .company-table dt {
+    padding: 14px 20px 6px;
+    border-bottom: none;
+    font-size: 0.82rem;
+  }
+  .company-table dd {
+    padding: 6px 20px 14px;
+  }
+
+  section { padding: 56px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" fill="var(--teal)" opacity="0.15"/>
+        <path d="M10 22c2-6 8-10 14-8 4 1.5 6 5 5 9s-4 7-9 7c-6 0-10-3-10-8z" fill="var(--teal)"/>
+        <circle cx="26" cy="20" r="1.5" fill="white"/>
+        <path d="M8 22c-2-1-4 0-5 2" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8 20c-2-2-3-4-2-6" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text">おさかなソフト</span>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a href="#concept">私たちについて</a>
+      <a href="#services">事業内容</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- Swimming fish silhouettes -->
+  <svg class="hero-fish" width="60" height="30" viewBox="0 0 60 30" fill="white">
+    <path d="M45 15c-8-12-30-12-40-2 10 0 32 8 40 2zM48 15l12-6v12z"/>
+  </svg>
+  <svg class="hero-fish" width="40" height="20" viewBox="0 0 60 30" fill="white" style="opacity:0.05">
+    <path d="M45 15c-8-12-30-12-40-2 10 0 32 8 40 2zM48 15l12-6v12z"/>
+  </svg>
+
+  <div class="hero-content">
+    <svg class="fish-mark" viewBox="0 0 80 80" fill="none">
+      <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+      <path d="M22 42c3-10 14-16 24-13 6 2.5 9 8 8 14s-6 11-14 11c-10 0-16-5-18-12z" fill="rgba(255,255,255,0.9)"/>
+      <circle cx="50" cy="38" r="2.5" fill="var(--ocean)"/>
+      <path d="M18 42c-3-2-6-0.5-8 3" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 39c-3-3-5-7-3-10" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h1>合同会社おさかなソフト</h1>
+    <p class="en-name">Osakana Soft LLC</p>
+    <p class="tagline">
+      小田原市のぷろぐらみん屋さん<br>
+      お客様のビジネスを支えます
+    </p>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,40 C320,80 440,0 720,50 C1000,100 1200,20 1440,60 L1440,100 L0,100Z" fill="var(--sand)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Concept -->
+<section class="concept" id="concept">
+  <div class="section-inner">
+    <div class="section-title reveal">
+      <span class="en">About Us</span>
+      <h2>私たちについて</h2>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-visual reveal">
+        <svg viewBox="0 0 500 360" fill="none">
+          <!-- Ocean scene illustration -->
+          <rect width="500" height="360" fill="url(#seaGrad)" rx="20"/>
+          <defs>
+            <linearGradient id="seaGrad" x1="0" y1="0" x2="500" y2="360">
+              <stop offset="0%" stop-color="#d4f1ed"/>
+              <stop offset="100%" stop-color="#5cc8b9"/>
+            </linearGradient>
+          </defs>
+          <!-- Waves -->
+          <path d="M0,180 Q80,160 160,180 T320,180 T480,180 L500,180 L500,360 L0,360Z" fill="rgba(26,107,138,0.15)"/>
+          <path d="M0,220 Q100,200 200,220 T400,220 L500,220 L500,360 L0,360Z" fill="rgba(26,107,138,0.1)"/>
+          <!-- Fish group -->
+          <g transform="translate(120,130) scale(0.8)" opacity="0.6">
+            <path d="M40 15c-6-10-24-10-32-2 8 0 26 6 32 2z" fill="var(--ocean)"/>
+            <path d="M42 15l8-5v10z" fill="var(--ocean)"/>
+          </g>
+          <g transform="translate(200,110) scale(0.6)" opacity="0.4">
+            <path d="M40 15c-6-10-24-10-32-2 8 0 26 6 32 2z" fill="var(--ocean)"/>
+            <path d="M42 15l8-5v10z" fill="var(--ocean)"/>
+          </g>
+          <g transform="translate(160,155) scale(0.5)" opacity="0.3">
+            <path d="M40 15c-6-10-24-10-32-2 8 0 26 6 32 2z" fill="var(--ocean)"/>
+            <path d="M42 15l8-5v10z" fill="var(--ocean)"/>
+          </g>
+          <!-- Code brackets -->
+          <text x="300" y="140" font-family="monospace" font-size="48" fill="rgba(11,61,92,0.15)" font-weight="bold">&lt;/&gt;</text>
+          <!-- Dots decoration -->
+          <circle cx="380" cy="80" r="4" fill="rgba(231,111,81,0.3)"/>
+          <circle cx="400" cy="95" r="3" fill="rgba(42,157,143,0.3)"/>
+          <circle cx="420" cy="75" r="5" fill="rgba(26,107,138,0.2)"/>
+        </svg>
+      </div>
+      <div class="concept-text reveal">
+        <h3>小田原市のぷろぐらみん屋さん</h3>
+        <p>
+          合同会社おさかなソフトは、神奈川県小田原市を拠点とするソフトウェア開発会社です。
+        </p>
+        <p style="margin-top:16px;">
+          Webサイト制作からシステム開発、ITコンサルティングまで、幅広い技術力でお客様のビジネス課題を解決します。小回りの利く体制で、丁寧なコミュニケーションと確かな品質をお約束します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,30 1440,35 L1440,80 L0,80Z" fill="var(--white)"/>
+  </svg>
+</div>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-title reveal">
+      <span class="en">Services</span>
+      <h2>事業内容</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+        </div>
+        <h3>システム開発</h3>
+        <p>業務システム、Webアプリケーション等の企画・設計・開発・保守まで一貫して対応いたします。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Web制作</h3>
+        <p>コーポレートサイト、ECサイト等の企画・制作・運営。ビジネスの成長を支えるWeb戦略をご提案します。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3>ITコンサルティング</h3>
+        <p>IT活用に関するご相談、技術選定、業務改善のご提案など、お客様の課題に寄り添ったサポートを行います。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3>データベース構築</h3>
+        <p>データベースの設計・構築・管理・運営を支援。データを活かした経営判断を後押しします。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Webサービス開発</h3>
+        <p>インターネットを活用した各種サービスの企画・開発・運営。アイデアを形にするお手伝いをします。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4v1a1 1 0 01-1 1h-2v2h3a1 1 0 011 1v2a1 1 0 01-1 1h-3v2h2a1 1 0 011 1v1a4 4 0 01-8 0v-1a1 1 0 011-1h2v-2H7a1 1 0 01-1-1v-2a1 1 0 011-1h3V8H8a1 1 0 01-1-1V6a4 4 0 014-4z"/><circle cx="5" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+        </div>
+        <h3>AI導入支援</h3>
+        <p>「AIで何ができるの？」というところから一緒に考えます。業務効率化やプロダクト改善にAIを活用するお手伝いをします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,50 C240,10 480,70 720,30 C960,-10 1200,50 1440,20 L1440,80 L0,80Z" fill="var(--sand)"/>
+  </svg>
+</div>
+
+<!-- Company -->
+<section class="company" id="company">
+  <div class="section-inner">
+    <div class="section-title reveal">
+      <span class="en">Company</span>
+      <h2>会社概要</h2>
+    </div>
+    <div class="company-table reveal">
+      <dl>
+        <dt>会社名</dt>
+        <dd>合同会社おさかなソフト</dd>
+        <dt>英文名</dt>
+        <dd>Osakana Soft LLC</dd>
+        <dt>代表者</dt>
+        <dd>小野寺 一輝</dd>
+        <dt>設立</dt>
+        <dd>2026年5月</dd>
+        <dt>資本金</dt>
+        <dd>30万円</dd>
+        <dt>所在地</dt>
+        <dd>神奈川県小田原市浜町3丁目11-2-402</dd>
+        <dt>事業内容</dt>
+        <dd>ソフトウェア開発、Webサイト制作、ITコンサルティング、データベース構築・管理、その他IT関連事業</dd>
+        <dt>決算期</dt>
+        <dd>4月</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="contact-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,60 C360,20 720,70 1080,30 C1260,15 1380,40 1440,35 L1440,0 L0,0Z" fill="var(--sand)"/>
+    </svg>
+  </div>
+  <div class="section-inner">
+    <div class="section-title reveal">
+      <span class="en">Contact</span>
+      <h2>お問い合わせ</h2>
+    </div>
+    <div class="contact-body reveal">
+      <p>
+        お仕事のご依頼・ご相談は、メールにてお気軽にお問い合わせください。<br>
+        内容を確認のうえ、折り返しご連絡いたします。
+      </p>
+      <p class="note">メールアドレス準備中</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Osakana Soft LLC. All rights reserved.</p>
+</footer>
+
+<script>
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('nav').classList.remove('open');
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
