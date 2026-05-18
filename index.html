@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>合同会社おさかなソフト | 小田原市のソフトウェア開発会社</title>
 <meta name="description" content="合同会社おさかなソフトは、小田原市のソフトウェア開発会社です。Webサイト制作・システム開発・ITコンサルティングなど、お客様の課題をテクノロジーで解決します。">
 <link rel="canonical" href="https://osakanasoft.com/">
@@ -45,37 +45,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Outfit:wght@300;500;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&amp;family=Outfit:wght@300;500;700&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&amp;family=Outfit:wght@300;500;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&amp;family=Outfit:wght@300;500;700&amp;display=swap" rel="stylesheet"></noscript>
 <style>
 /* ── Reset & Variables ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --deep-blue: #0b3d5c;
-  --ocean: #1a6b8a;
-  --teal: #2a9d8f;
-  --seafoam: #5cc8b9;
+  --deep-blue: #082f49;
+  --ocean: #16627e;
+  --teal: #1da99a;
+  --seafoam: #6fd8c9;
   --light-aqua: #d4f1ed;
-  --sand: #faf6f0;
-  --warm-sand: #f5efe5;
+  --sand: #fbf7ef;
+  --warm-sand: #f4eadc;
   --white: #ffffff;
-  --text: #2c3e50;
-  --text-light: #5a7184;
-  --accent: #e76f51;
+  --text: #1f3142;
+  --text-light: #607286;
+  --accent: #f07a55;
+  --line: rgba(8, 47, 73, 0.1);
+  --shadow-soft: 0 22px 60px rgba(8, 47, 73, 0.1);
+  --shadow-card: 0 16px 42px rgba(8, 47, 73, 0.08);
   --font-jp: 'Zen Maru Gothic', 'Hiragino Sans', sans-serif;
   --font-en: 'Outfit', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: var(--sand);
+}
 
 body {
   font-family: var(--font-jp);
   color: var(--text);
-  background: var(--sand);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(111,216,201,0.2), transparent 28rem),
+    radial-gradient(circle at 90% 12%, rgba(240,122,85,0.12), transparent 24rem),
+    var(--sand);
   overflow-x: hidden;
   line-height: 1.8;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(8,47,73,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,47,73,0.028) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 78%);
+  pointer-events: none;
 }
 
 /* ── Wave Dividers ── */
@@ -98,14 +119,14 @@ header {
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(42,157,143,0.12);
+  padding-top: env(safe-area-inset-top);
+  background: var(--sand);
+  border-bottom: 1px solid rgba(8,47,73,0.08);
   transition: box-shadow 0.3s;
 }
 header.scrolled {
-  box-shadow: 0 2px 24px rgba(11,61,92,0.08);
+  background: var(--sand);
+  box-shadow: 0 10px 34px rgba(8,47,73,0.08);
 }
 .header-inner {
   max-width: 1100px;
@@ -137,7 +158,7 @@ nav a {
   text-decoration: none;
   color: var(--text-light);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 700;
   position: relative;
   transition: color 0.3s;
 }
@@ -173,7 +194,16 @@ nav a:hover::after { width: 100%; }
   height: 2px;
   background: var(--deep-blue);
   border-radius: 1px;
-  transition: all 0.3s;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.mobile-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ── Hero ── */
@@ -183,8 +213,22 @@ nav a:hover::after { width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(170deg, var(--deep-blue) 0%, var(--ocean) 40%, var(--teal) 100%);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,0.16), transparent 18rem),
+    radial-gradient(circle at 82% 24%, rgba(111,216,201,0.28), transparent 22rem),
+    linear-gradient(150deg, #071f36 0%, var(--deep-blue) 30%, var(--ocean) 64%, var(--teal) 100%);
   overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 82%);
+  pointer-events: none;
 }
 .hero-bg {
   position: absolute;
@@ -194,7 +238,8 @@ nav a:hover::after { width: 100%; }
 .hero-bg .bubble {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.07);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
   animation: float 8s ease-in-out infinite;
 }
 .hero-bg .bubble:nth-child(1) { width: 300px; height: 300px; top: 10%; left: -5%; animation-delay: 0s; }
@@ -211,19 +256,27 @@ nav a:hover::after { width: 100%; }
 /* Fish swimming animation */
 .hero-fish {
   position: absolute;
-  opacity: 0.08;
+  opacity: 0.1;
   animation: swim 20s linear infinite;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
 }
-.hero-fish:nth-child(1) { top: 30%; animation-duration: 18s; }
-.hero-fish:nth-child(2) { top: 60%; animation-duration: 24s; animation-delay: 6s; }
-.hero-fish:nth-child(3) { top: 45%; animation-duration: 22s; animation-delay: 12s; }
+.hero > .hero-fish:nth-of-type(1) {
+  top: 30%;
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+.hero > .hero-fish:nth-of-type(2) {
+  top: 60%;
+  animation-duration: 24s;
+  animation-delay: -13s;
+}
 
 @keyframes swim {
-  0% { left: -10%; transform: scaleX(1); }
-  49% { transform: scaleX(1); }
-  50% { left: 110%; transform: scaleX(-1); }
-  99% { transform: scaleX(-1); }
-  100% { left: -10%; transform: scaleX(1); }
+  0% { left: -10%; transform: scaleX(-1); }
+  49% { transform: scaleX(-1); }
+  50% { left: 110%; transform: scaleX(1); }
+  99% { transform: scaleX(1); }
+  100% { left: -10%; transform: scaleX(-1); }
 }
 
 .hero-content {
@@ -232,6 +285,7 @@ nav a:hover::after { width: 100%; }
   text-align: center;
   color: var(--white);
   padding: 0 24px;
+  max-width: 780px;
 }
 .hero-content .fish-mark {
   width: 80px;
@@ -239,14 +293,23 @@ nav a:hover::after { width: 100%; }
   margin: 0 auto 24px;
   opacity: 0;
   animation: fadeUp 0.8s 0.3s forwards;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.14));
 }
 .hero-content h1 {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   margin-bottom: 8px;
   opacity: 0;
   animation: fadeUp 0.8s 0.5s forwards;
+  text-shadow: 0 10px 38px rgba(0,0,0,0.18);
+}
+.hero-content .company-name {
+  display: block;
+  font-size: clamp(0.86rem, 1.8vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.78);
 }
 .hero-content .en-name {
   font-family: var(--font-en);
@@ -263,6 +326,7 @@ nav a:hover::after { width: 100%; }
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 400;
   line-height: 2;
+  color: rgba(255,255,255,0.9);
   opacity: 0;
   animation: fadeUp 0.8s 0.9s forwards;
 }
@@ -288,10 +352,10 @@ nav a:hover::after { width: 100%; }
 
 /* ── Section Common ── */
 section {
-  padding: 80px 24px;
+  padding: 88px 24px;
 }
 .section-inner {
-  max-width: 960px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 .section-title {
@@ -309,7 +373,7 @@ section {
   margin-bottom: 8px;
 }
 .section-title h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
   font-weight: 700;
   color: var(--deep-blue);
   position: relative;
@@ -341,9 +405,10 @@ section {
 .concept-visual {
   position: relative;
   height: 360px;
-  border-radius: 20px;
+  border-radius: 28px;
   overflow: hidden;
   background: linear-gradient(135deg, var(--light-aqua), var(--seafoam));
+  box-shadow: var(--shadow-soft);
 }
 .concept-visual svg {
   position: absolute;
@@ -351,7 +416,7 @@ section {
   height: 100%;
 }
 .concept-text h3 {
-  font-size: 1.35rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
   color: var(--deep-blue);
   margin-bottom: 20px;
   line-height: 1.6;
@@ -364,7 +429,9 @@ section {
 
 /* ── Services Section ── */
 .services {
-  background: var(--white);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.96)),
+    var(--white);
   position: relative;
 }
 .services-grid {
@@ -373,13 +440,15 @@ section {
   gap: 28px;
 }
 .service-card {
-  background: var(--sand);
-  border-radius: 16px;
+  background: rgba(255,255,255,0.84);
+  border: 1px solid var(--line);
+  border-radius: 22px;
   padding: 36px 28px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(8,47,73,0.04);
 }
 .service-card::before {
   content: '';
@@ -394,8 +463,8 @@ section {
   transition: transform 0.4s;
 }
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(11,61,92,0.08);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
 }
 .service-card:hover::before {
   transform: scaleX(1);
@@ -405,7 +474,7 @@ section {
   height: 56px;
   margin: 0 auto 20px;
   background: linear-gradient(135deg, var(--teal), var(--ocean));
-  border-radius: 14px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -439,9 +508,10 @@ section {
   max-width: 720px;
   margin: 0 auto;
   background: var(--white);
-  border-radius: 16px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(11,61,92,0.04);
+  box-shadow: var(--shadow-card);
 }
 .company-table dl {
   display: grid;
@@ -450,11 +520,11 @@ section {
 .company-table dt,
 .company-table dd {
   padding: 20px 28px;
-  border-bottom: 1px solid rgba(42,157,143,0.08);
+  border-bottom: 1px solid var(--line);
   font-size: 0.92rem;
 }
 .company-table dt {
-  background: var(--light-aqua);
+  background: #e8f7f4;
   color: var(--deep-blue);
   font-weight: 500;
 }
@@ -468,7 +538,9 @@ section {
 
 /* ── Contact Section ── */
 .contact {
-  background: linear-gradient(170deg, var(--ocean), var(--deep-blue));
+  background:
+    radial-gradient(circle at 18% 20%, rgba(111,216,201,0.16), transparent 22rem),
+    linear-gradient(160deg, var(--ocean), var(--deep-blue));
   position: relative;
   overflow: hidden;
 }
@@ -484,11 +556,13 @@ section {
 .contact-body .note {
   display: inline-block;
   margin-top: 24px;
-  padding: 16px 36px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  font-size: 0.9rem;
+  padding: 16px 34px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  color: white;
+  backdrop-filter: blur(12px);
 }
 .contact-wave {
   position: absolute;
@@ -544,17 +618,151 @@ footer {
   nav.open {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 64px;
-    left: 0;
+    justify-content: flex-start;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
     width: 100%;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(12px);
-    padding: 24px;
-    gap: 20px;
-    border-bottom: 1px solid rgba(42,157,143,0.12);
+    min-height: 100dvh;
+    padding: calc(112px + env(safe-area-inset-top)) 28px calc(34px + env(safe-area-inset-bottom));
+    gap: 0;
+    background:
+      linear-gradient(rgba(255,255,255,0.38) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.38) 1px, transparent 1px),
+      radial-gradient(circle at 86% 18%, rgba(111,216,201,0.22), transparent 13rem),
+      radial-gradient(circle at 12% 84%, rgba(240,122,85,0.1), transparent 15rem),
+      var(--sand);
+    background-size: 34px 34px, 34px 34px, auto, auto, auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  nav.open::before {
+    content: 'Menu';
+    margin-bottom: 22px;
+    color: var(--teal);
+    font-family: var(--font-en);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  nav.open::after {
+    content: 'Osakana Soft LLC';
+    margin-top: auto;
+    color: rgba(8,47,73,0.36);
+    font-family: var(--font-en);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+  }
+  nav.open a {
+    justify-content: center;
+    align-items: center;
+    min-height: 58px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(8,47,73,0.12);
+    border-radius: 0;
+    background: transparent;
+    color: var(--deep-blue);
+    font-size: clamp(1.05rem, 5.6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    box-shadow: none;
+  }
+  nav.open a:first-of-type {
+    margin-top: auto;
+  }
+  nav.open a::before {
+    flex: 0 0 auto;
+    margin-right: 12px;
+    color: rgba(8,47,73,0.34);
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  nav.open a:nth-child(1)::before { content: '01'; }
+  nav.open a:nth-child(2)::before { content: '02'; }
+  nav.open a:nth-child(3)::before { content: '03'; }
+  nav.open a:nth-child(4)::before { content: '04'; }
+  nav.open a::after {
+    display: none;
+  }
+  nav.open a:hover,
+  nav.open a:focus-visible {
+    background: transparent;
+    color: var(--ocean);
+    outline: none;
   }
   .mobile-toggle { display: flex; }
+  .mobile-toggle {
+    position: relative;
+    z-index: 102;
+  }
+
+  .hero {
+    min-height: 86vh;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(255,255,255,0.12), transparent 16rem),
+      linear-gradient(160deg, #082f49 0%, var(--ocean) 58%, var(--teal) 100%);
+  }
+  .hero::before {
+    opacity: 0.28;
+    background-size: 56px 56px;
+  }
+  .hero-bg .bubble {
+    opacity: 0.45;
+  }
+  .hero-bg .bubble:nth-child(1) {
+    width: 220px;
+    height: 220px;
+    top: 8%;
+    left: -28%;
+  }
+  .hero-bg .bubble:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 66%;
+    right: -22%;
+  }
+  .hero-bg .bubble:nth-child(n+3) {
+    display: none;
+  }
+  .hero-fish {
+    opacity: 0.055;
+    filter: none;
+  }
+  .hero > .hero-fish:nth-of-type(1) {
+    top: 22%;
+  }
+  .hero > .hero-fish:nth-of-type(2) {
+    display: none;
+  }
+  .hero-content {
+    padding: 0 22px;
+  }
+  .hero-content .fish-mark {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 18px;
+  }
+  .hero-content h1 {
+    font-size: clamp(1.82rem, 8.6vw, 2.34rem);
+    line-height: 1.28;
+    text-shadow: 0 8px 28px rgba(0,0,0,0.16);
+  }
+  .hero-content .en-name {
+    margin-bottom: 22px;
+  }
+  .hero-content .tagline {
+    font-size: 0.96rem;
+    line-height: 1.9;
+  }
+  .hero-wave svg {
+    height: 64px;
+  }
 
   .concept-grid {
     grid-template-columns: 1fr;
@@ -564,7 +772,49 @@ footer {
 
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 12px;
+  }
+  .service-card {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    column-gap: 14px;
+    align-items: start;
+    padding: 18px;
+    padding-left: 22px;
+    text-align: left;
+    border-radius: 18px;
+  }
+  .service-card::before {
+    width: 4px;
+    height: 100%;
+    transform: scaleY(1);
+    background: linear-gradient(180deg, var(--teal), var(--seafoam));
+  }
+  .service-card:hover {
+    transform: none;
+  }
+  .service-icon {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    border-radius: 14px;
+  }
+  .service-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+  .service-card h3 {
+    grid-column: 2;
+    margin: 0 0 4px;
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+  .service-card p {
+    grid-column: 2;
+    font-size: 0.8rem;
+    line-height: 1.65;
   }
 
   .company-table dl {
@@ -598,7 +848,7 @@ footer {
       </svg>
       <span class="logo-text">おさかなソフト</span>
     </a>
-    <button class="mobile-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="メニュー">
+    <button class="mobile-toggle" onclick="const nav=document.querySelector('nav'); const open=nav.classList.toggle('open'); this.classList.toggle('open', open); this.setAttribute('aria-expanded', open);" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav>
@@ -621,11 +871,18 @@ footer {
   </div>
 
   <!-- Swimming fish silhouettes -->
-  <svg class="hero-fish" width="60" height="30" viewBox="0 0 60 30" fill="white">
-    <path d="M45 15c-8-12-30-12-40-2 10 0 32 8 40 2zM48 15l12-6v12z"/>
+  <svg class="hero-fish" width="76" height="38" viewBox="0 0 76 38" fill="white" aria-hidden="true">
+    <path d="M50 19c-7.5 9.5-24 13.5-38 2.5-2.4-1.9-2.4-3.1 0-5C26 5.5 42.5 9.5 50 19z"/>
+    <path d="M52 19l20-12v24L52 19z"/>
+    <path d="M29 9c5-7 13-7 17-2-6 0-12 1-17 2z" opacity="0.72"/>
+    <path d="M31 29c5 4 12 4 16 0-5 1-10 1-16 0z" opacity="0.45"/>
+    <circle cx="19" cy="18" r="2" fill="var(--ocean)" opacity="0.8"/>
   </svg>
-  <svg class="hero-fish" width="40" height="20" viewBox="0 0 60 30" fill="white" style="opacity:0.05">
-    <path d="M45 15c-8-12-30-12-40-2 10 0 32 8 40 2zM48 15l12-6v12z"/>
+  <svg class="hero-fish" width="52" height="26" viewBox="0 0 76 38" fill="white" style="opacity:0.06" aria-hidden="true">
+    <path d="M50 19c-7.5 9.5-24 13.5-38 2.5-2.4-1.9-2.4-3.1 0-5C26 5.5 42.5 9.5 50 19z"/>
+    <path d="M52 19l20-12v24L52 19z"/>
+    <path d="M29 9c5-7 13-7 17-2-6 0-12 1-17 2z" opacity="0.72"/>
+    <circle cx="19" cy="18" r="2" fill="var(--ocean)" opacity="0.8"/>
   </svg>
 
   <div class="hero-content">
@@ -636,7 +893,8 @@ footer {
       <path d="M18 42c-3-2-6-0.5-8 3" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
       <path d="M18 39c-3-3-5-7-3-10" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <h1>合同会社おさかなソフト</h1>
+    <h1>小田原の<br>ぷろぐらみん屋さん</h1>
+    <p class="company-name">合同会社おさかなソフト</p>
     <p class="en-name">Osakana Soft LLC</p>
     <p class="tagline">
       小田原市のソフトウェア開発会社<br>
@@ -685,8 +943,21 @@ footer {
             <path d="M40 15c-6-10-24-10-32-2 8 0 26 6 32 2z" fill="var(--ocean)"/>
             <path d="M42 15l8-5v10z" fill="var(--ocean)"/>
           </g>
-          <!-- Code brackets -->
-          <text x="300" y="140" font-family="monospace" font-size="48" fill="rgba(11,61,92,0.15)" font-weight="bold">&lt;/&gt;</text>
+          <!-- Odawara castle-inspired silhouette -->
+          <g transform="translate(302,102)" opacity="0.28">
+            <path d="M20 130h148l-14-18H34z" fill="var(--deep-blue)"/>
+            <rect x="36" y="92" width="116" height="30" rx="2" fill="white"/>
+            <path d="M24 92h140l-18-22H42z" fill="var(--deep-blue)"/>
+            <rect x="56" y="58" width="76" height="28" rx="2" fill="white"/>
+            <path d="M44 58h100l-16-20H60z" fill="var(--deep-blue)"/>
+            <rect x="74" y="28" width="40" height="26" rx="2" fill="white"/>
+            <path d="M64 28h60L112 12H78z" fill="var(--deep-blue)"/>
+            <rect x="52" y="102" width="12" height="12" fill="var(--deep-blue)"/>
+            <rect x="86" y="102" width="12" height="12" fill="var(--deep-blue)"/>
+            <rect x="120" y="102" width="12" height="12" fill="var(--deep-blue)"/>
+            <rect x="82" y="68" width="10" height="10" fill="var(--deep-blue)"/>
+            <rect x="104" y="68" width="10" height="10" fill="var(--deep-blue)"/>
+          </g>
           <!-- Dots decoration -->
           <circle cx="380" cy="80" r="4" fill="rgba(231,111,81,0.3)"/>
           <circle cx="400" cy="95" r="3" fill="rgba(42,157,143,0.3)"/>
@@ -842,6 +1113,9 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('nav a').forEach(a => {
   a.addEventListener('click', () => {
     document.querySelector('nav').classList.remove('open');
+    const toggle = document.querySelector('.mobile-toggle');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
   });
 });
 
