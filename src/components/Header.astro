@@ -4,20 +4,20 @@ import { logoFish } from "../data/sprites";
 import { site } from "../data/site";
 
 const nav = [
-  { href: "/#about", label: "このかいしゃ", en: "ABOUT" },
-  { href: "/#services", label: "できること", en: "SERVICES" },
-  { href: "/playground", label: "あそびば", en: "PLAYGROUND" },
-  { href: "/#company", label: "かいしゃ情報", en: "COMPANY" },
+  { href: "/#about", label: "このかいしゃ" },
+  { href: "/#services", label: "できること" },
+  { href: "/playground", label: "あそびば" },
+  { href: "/#company", label: "かいしゃ情報" },
 ];
 ---
 
-<header
-  class="fixed inset-x-0 top-0 z-40 border-b-2 border-shallow/60 bg-abyss/85 backdrop-blur-sm"
->
-  <div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
-    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label={`${site.short} ホーム`}>
-      <PixelSprite sprite={logoFish} width={34} />
-      <span class="font-pixel text-lg leading-none tracking-wide text-foam">おさかなソフト</span>
+<header class="fixed inset-x-0 top-0 z-40 border-b-2 border-shallow/60 bg-abyss/90 backdrop-blur-sm">
+  <div class="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
+    <a href="/" class="flex shrink-0 items-center gap-2" aria-label={`${site.short} ホーム`}>
+      <PixelSprite sprite={logoFish} width={30} class="sm:w-[34px]" />
+      <span class="font-pixel text-base leading-none tracking-wide text-foam sm:text-lg">
+        おさかなソフト
+      </span>
     </a>
 
     <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="メインナビゲーション">
@@ -38,10 +38,38 @@ const nav = [
 
     <a
       href={`mailto:${site.email}`}
-      class="pixel-button ml-auto bg-coral text-abyss md:ml-2"
-      style="font-size: 0.85rem; padding: 0.6rem 1rem;"
+      class="pixel-button ml-auto shrink-0 bg-coral px-3 py-2.5 text-[0.78rem] text-abyss sm:px-4 sm:text-[0.85rem] md:ml-2"
     >
       そうだんする
     </a>
+
+    {/* モバイル用メニュー。JSなしで開閉できる details を使う */}
+    <details class="group relative shrink-0 md:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center border-2 border-shallow text-foam [&::-webkit-details-marker]:hidden"
+        aria-label="メニューを開く"
+      >
+        <span class="flex flex-col gap-[5px]">
+          <span class="block h-[3px] w-5 bg-foam"></span>
+          <span class="block h-[3px] w-5 bg-foam"></span>
+          <span class="block h-[3px] w-5 bg-foam"></span>
+        </span>
+      </summary>
+      <nav
+        class="pixel-window absolute right-0 z-50 mt-3 w-56 bg-deep p-2"
+        aria-label="メインナビゲーション"
+      >
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class="block border-b border-shallow/50 px-4 py-3.5 font-pixel text-base text-foam last:border-b-0 hover:text-cyan"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </details>
   </div>
 </header>

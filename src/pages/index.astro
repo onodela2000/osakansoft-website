@@ -20,16 +20,27 @@ const accentVar = {
   <section class="relative flex min-h-[100svh] items-center overflow-hidden bg-abyss pt-16">
     <SeaBackdrop />
 
+    {/* 魚が文字の裏を通っても読めるように、文字側だけ暗く落とす */}
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-abyss/85 via-abyss/50 to-transparent md:from-abyss/70 md:via-abyss/25"
+      aria-hidden="true"
+    >
+    </div>
+
     <div class="relative mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p class="mb-6 flex items-center gap-3 font-arcade text-[10px] tracking-widest text-cyan">
-        <span class="inline-block h-2 w-2 bg-cyan animate-blink"></span>
-        ODAWARA, JAPAN / SOFTWARE STUDIO
+      <p
+        class="mb-6 flex items-center gap-2.5 font-arcade text-[9px] tracking-widest text-cyan sm:text-[10px]"
+      >
+        <span class="inline-block h-2 w-2 shrink-0 bg-cyan animate-blink"></span>
+        ODAWARA / SOFTWARE STUDIO
       </p>
 
-      <h1 class="font-pixel leading-[0.95] text-shadow-pixel">
-        <span class="block text-[clamp(2.6rem,10vw,7rem)] text-foam">おさかなソフト</span>
-        <span class="mt-4 block text-[clamp(1.1rem,3.6vw,2.1rem)] text-cyan">
-          たのまれたものも、たのまれてないものも。
+      <h1 class="font-pixel text-shadow-pixel">
+        <span class="block text-[clamp(2.6rem,10vw,7rem)] leading-[0.95] text-foam"
+          >おさかなソフト</span
+        >
+        <span class="mt-5 block text-[clamp(1.15rem,3.6vw,2.1rem)] leading-[1.35] text-cyan">
+          たのまれたものも、<wbr />たのまれてないものも。
         </span>
       </h1>
 
