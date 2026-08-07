@@ -1,0 +1,205 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import { site, companyProfile } from "../data/site";
+import { games } from "../data/games";
+import aiLearningImage from "../assets/work-ai-learning-product-v5.png";
+import auctionImage from "../assets/work-auction-ops-v2.png";
+import ecommerceImage from "../assets/work-ecommerce-goods-v2.png";
+import automationImage from "../assets/work-automation-v2.png";
+import homepageImage from "../assets/work-homepage-dummy-v3.png";
+import techAdvisoryImage from "../assets/work-tech-advisory-illustration-v9.png";
+
+const clientWorks = [
+  { no: "01", en: "AI LEARNING", title: "AIオンライン学習サービス", copy: "最新のAI活用を動画で学べる、受講者にも運営者にも使いやすい学習環境をつくっています。", image: aiLearningImage },
+  { no: "02", en: "AUCTION OPS", title: "オークション売買管理ツール", copy: "入札から精算・請求書発行までを一括化し、会場の売買を速く、正確に進められる仕組みをつくっています。", image: auctionImage },
+  { no: "03", en: "E-COMMERCE", title: "ECサイト開発", copy: "商品の一覧から購入まで、運営する人にも使いやすい売り場をつくります。", image: ecommerceImage },
+  { no: "04", en: "WORK AUTOMATION", title: "AIを使った業務自動化", copy: "定型作業や資料作成、データ整理を、無理のないところから効率化します。", image: automationImage },
+  { no: "05", en: "WEBSITE DESIGN", title: "ホームページ制作", copy: "ご予算や用途に合わせて、デザインから公開・運用まで支援しています。維持費を抑えた構成にも対応します。", image: homepageImage },
+  { no: "06", en: "TECH ADVISORY", title: "技術顧問・アドバイザー", copy: "技術選定からインフラ、リリースまで、開発の不安を一緒に整理しながら伴走します。", image: techAdvisoryImage },
+] as const;
+
+const mediaItems = [
+  { label: "AI / WORK", title: "AI導入を、小さく始める。", copy: "企業向けAI勉強会や、仕事での使い方について。", visual: "journal" },
+  { label: "MAKING", title: "つくりたいものの途中。", copy: "ゲームやアプリをつくる途中の話。", visual: "making" },
+  { label: "ODAWARA", title: "小田原からつくるということ。", copy: "小さなスタジオの日々と、考えていること。", visual: "odawara" },
+] as const;
+---
+
+<Layout>
+  <section class="wave-hero" aria-labelledby="hero-title">
+    <div class="wave-grid" aria-hidden="true"></div>
+    <div class="wave-bubble bubble-left" aria-hidden="true"></div>
+    <div class="wave-bubble bubble-right" aria-hidden="true"></div>
+
+    <div class="wave-shell hero-layout">
+      <div class="hero-copy">
+        <p class="hero-place">小田原のぷろぐらみん屋さん</p>
+        <h1 id="hero-title">仕事は、ていねいに。<br />ものづくりは、自由に。</h1>
+        <p class="hero-about">おさかなソフトは、小田原の小さなソフトウェアスタジオです。</p>
+      </div>
+
+      <div class="hero-collage" aria-label="おさかなソフトの制作イメージ">
+        <div class="collage-main">
+          <img src="/member-illustration.png" alt="パソコンを持つ小野寺一輝のイラスト" width="500" height="500" />
+          <span>SOFTWARE STUDIO</span>
+        </div>
+        <div class="collage-code" aria-hidden="true">
+          <p>WEB</p><p>AI</p><p>APP</p>
+          <i></i><i></i><i></i>
+        </div>
+        <div class="collage-game">
+          <Image src={games[0].shot} alt={`${games[0].title} の画面`} widths={[360,720]} sizes="260px" loading="eager" />
+          <span>PLAYGROUND</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C320,80 440,0 720,50 C1000,100 1200,20 1440,60 L1440,100 L0,100Z" fill="var(--sand)"></path></svg>
+    </div>
+  </section>
+
+  <section id="about" class="label-section studio-about-section">
+    <div class="wave-shell studio-about-layout">
+      <div class="studio-about-heading">
+        <p>ABOUT OSAKANA SOFT</p>
+        <h2>おさかなソフト<br />について</h2>
+      </div>
+
+      <div class="studio-about-copy">
+        <p class="studio-about-lead">小田原で、ソフトウェアをつくっています。</p>
+        <p>おさかなソフトは、エンジニアが中心になって動く小さなソフトウェアスタジオです。相談の窓口と、設計・実装をする人が同じなので、話がまっすぐ届きます。プロジェクトに合わせて、信頼できる仲間とチームを組むこともあります。</p>
+
+        <div class="studio-what-we-do">
+          <p>WHAT WE DO</p>
+          <ul aria-label="事業内容">
+            <li><span>01</span>システム開発</li>
+            <li><span>02</span>AI導入</li>
+            <li><span>03</span>技術顧問</li>
+            <li><span>04</span>AI勉強会</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,30 1440,35 L1440,80 L0,80Z" fill="var(--white)"></path></svg>
+    </div>
+  </section>
+
+  <section id="work" class="label-section client-section">
+    <div class="wave-shell">
+      <header class="label-heading">
+        <div><p>OUR WORK</p><h2>おしごと</h2></div>
+        <p>お客様が本当に必要としているものを、<br />一緒に考え、つくっています。</p>
+      </header>
+
+      <div class="content-grid client-grid">
+        {clientWorks.map((work) => (
+          <article class="content-card client-card">
+            <div class="client-visual">
+              <Image
+                src={work.image}
+                alt={`${work.title}の制作イメージ`}
+                widths={[420, 760, 1100]}
+                sizes="(max-width: 680px) 46vw, 33vw"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-meta"><span>{work.no}</span><span>{work.en}</span></div>
+            <h3>{work.title}</h3>
+            <p>{work.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,20 C360,60 720,0 1080,40 C1260,55 1380,30 1440,35 L1440,80 L0,80Z" fill="var(--sand)"></path></svg>
+    </div>
+  </section>
+
+  <section id="playground" class="label-section playground-label">
+    <div class="wave-shell">
+      <header class="play-heading">
+        <div>
+          <p>PLAYGROUND</p>
+          <h2>あそびば</h2>
+        </div>
+        <p>好奇心から始まるものも、<br />本気でつくっています。</p>
+      </header>
+
+      <div class="content-grid playground-grid">
+        {games.map((game) => (
+          <article class="content-card game-label-card">
+            <a href={`/playground/${game.slug}`} class="game-label-image">
+              <Image src={game.shot} alt={`${game.title} のスクリーンショット`} widths={[500,900]} sizes="(max-width:720px) 100vw, 33vw" loading="lazy" />
+            </a>
+            <div class="card-meta"><span>{game.year}</span><span>{game.status}</span></div>
+            <h3><a href={`/playground/${game.slug}`}>{game.title}</a></h3>
+            <p>{game.copy}</p>
+            <a href={game.url} target="_blank" rel="noopener noreferrer" class="small-ticket">あそぶ ↗</a>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,50 C240,10 480,70 720,30 C960,-10 1200,50 1440,20 L1440,80 L0,80Z" fill="var(--white)"></path></svg>
+    </div>
+  </section>
+
+  <section id="media" class="label-section media-section">
+    <div class="wave-shell">
+      <header class="label-heading media-heading">
+        <div><p>MEDIA</p><h2>おさかな通信</h2></div>
+        <p>つくっているものや、AIのこと、小さなスタジオのこと。これから少しずつ置いていく場所です。</p>
+      </header>
+
+      <div class="content-grid media-grid">
+        {mediaItems.map((item, index) => (
+          <article class="content-card media-card">
+            <div class={`media-visual media-${item.visual}`}>
+              {item.visual === "journal" && <div aria-hidden="true"><b>AI</b><span>WORK NOTE</span><i></i></div>}
+              {item.visual === "making" && <Image src={games[1].shot} alt="自主制作ゲームの制作画面" widths={[500,800]} sizes="33vw" loading="lazy" />}
+              {item.visual === "odawara" && <img src="/member-illustration.png" alt="おさかなソフトのメンバーイラスト" width="500" height="500" loading="lazy" />}
+            </div>
+            <div class="card-meta"><span>0{index + 1}</span><span>{item.label}</span></div>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            <span class="coming-label">COMING SOON</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="company" class="company-profile-section">
+    <div class="wave-shell studio-company-block">
+      <header class="studio-company-heading">
+        <p>COMPANY</p>
+        <h2>会社概要</h2>
+      </header>
+      <div class="studio-company-table">
+        <dl>
+          {companyProfile.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="company-contact-section contact-only-section">
+    <div class="contact-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,60 C360,20 720,70 1080,30 C1260,15 1380,40 1440,35 L1440,0 L0,0Z" fill="var(--white)"></path></svg>
+    </div>
+    <div class="wave-grid" aria-hidden="true"></div>
+
+    <div class="wave-shell final-contact">
+      <p>CONTACT</p>
+      <h2>こんなことできる？<br />からで大丈夫です。</h2>
+      <a href={`mailto:${site.email}`}>メールで相談する <span>{site.email}</span></a>
+    </div>
+  </section>
+</Layout>

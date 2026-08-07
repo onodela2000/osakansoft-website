@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GameCard from "../../components/GameCard.astro";
+import { games } from "../../data/games";
+---
+
+<Layout
+  title="あそびば"
+  description="おさかなソフトが、誰にも頼まれずにつくったゲームやアプリの置き場です。"
+>
+  <section class="archive-hero">
+    <div class="archive-bubbles" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="shell archive-hero-inner">
+      <a href="/" class="back-link">← ホームへ</a>
+      <p class="section-label">PLAYGROUND</p>
+      <h1>あそびば</h1>
+      <p class="archive-lead">誰にも頼まれていないものを、<br />いちばん本気でつくっています。</p>
+      <p class="archive-note">ゲームだったり、アプリだったり。開いたら、そのまま遊べます。</p>
+    </div>
+  </section>
+
+  <section class="archive-list">
+    <div class="shell">
+      <div class="archive-grid">
+        {games.map((game) => <GameCard game={game} />)}
+      </div>
+
+      <div class="archive-coming">
+        <div class="coming-fish" aria-hidden="true"><span></span><i></i><i></i></div>
+        <div>
+          <p class="section-label">NEXT PROJECT</p>
+          <h2>つぎのやつ、つくっています。</h2>
+          <p>しょうもないものから、ちゃんとしたものまで。できたらここに並べます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

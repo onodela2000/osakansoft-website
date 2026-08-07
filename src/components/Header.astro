@@ -1,0 +1,22 @@
+---
+import { site } from "../data/site";
+const nav = [
+  { href: "/#about", label: "おさかなソフト" },
+  { href: "/#work", label: "おしごと" },
+  { href: "/#playground", label: "あそびば" },
+  { href: "/#media", label: "おさかな通信" },
+];
+---
+<header class="site-header wave-header">
+  <div class="wave-shell header-inner">
+    <a href="/" class="brand" aria-label={`${site.short} ホーム`}><span class="brand-fish" aria-hidden="true"></span><span>おさかなソフト</span></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href={`mailto:${site.email}`} class="nav-contact">お問い合わせ</a>
+    </nav>
+    <details class="mobile-menu">
+      <summary aria-label="メニューを開く"><span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span></summary>
+      <nav aria-label="モバイルナビゲーション">{nav.map((item) => <a href={item.href}>{item.label}</a>)}<a href={`mailto:${site.email}`}>お問い合わせ</a></nav>
+    </details>
+  </div>
+</header>

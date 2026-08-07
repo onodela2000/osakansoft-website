@@ -1,40 +1,43 @@
-# 合同会社おさかなソフト コーポレートサイト
+# Astro Starter Kit: Minimal
 
-## 概要
+```sh
+npm create astro@latest -- --template minimal
+```
 
-法人の口座開設・クレカ審査対策として作成した簡易コーポレートサイト。
-ペライチ（1ページ完結）の静的HTML。サーバ費用を抑えるため、GitHub Pages や Cloudflare Pages での無料ホスティングを想定。
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## ページ構成
+## 🚀 Project Structure
 
-1. **ヒーロー** — 社名 + 「小田原市のぷろぐらみん屋さん」のタグライン
-2. **私たちについて** — 会社紹介・コンセプト
-3. **事業内容** — 定款記載の事業目的をベースに6カード
-4. **会社概要** — 登記情報テーブル
-5. **お問い合わせ** — メールアドレス準備中
+Inside of your Astro project, you'll see the following folders and files:
 
-## デザインコンセプト
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-- 「おさかな」の社名に合わせた海・波モチーフ
-- TOTOCO小田原のサイトを参考に、波型セクション区切りやイラスト的なビジュアルを採用
-- 色はブルー〜ティール系で信頼感 + 親しみやすさ
-- フォント：Zen Maru Gothic（丸ゴシック）で柔らかい印象
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## 参考サイト
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-- https://www.totoco-odawara.com/concept/ — 波・海モチーフのレイアウト、セクション間の波型区切り
+Any static assets, like images, can be placed in the `public/` directory.
 
-## 技術スタック
+## 🧞 Commands
 
-- 静的HTML + CSS + JS（単一ファイル）
-- 外部依存：Google Fonts（Zen Maru Gothic, Outfit）のみ
-- レスポンシブ対応済み
+All commands are run from the root of the project, from a terminal:
 
-## 使用スキル
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-- Claude Code `frontend-design`（ui-ux-pro-max）スキル
+## 👀 Want to learn more?
 
-## 内容のソース
-
-- `corp/registration/setup.md` — 会社情報（社名、所在地、資本金、代表者等）
-- `corp/plans/2026.md` — 事業方針・定款記載の事業目的
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
