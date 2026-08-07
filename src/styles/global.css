@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  /* 深海 → 浅瀬 */
+  --color-abyss: #060b18;
+  --color-deep: #0c1730;
+  --color-sea: #142b52;
+  --color-shallow: #1d3a66;
+
+  /* 光 */
+  --color-foam: #f4f8ff;
+  --color-mist: #b9cbe8; /* 本文用。暗背景で薄すぎると読まれないので明るめに取る */
+  --color-dim: #6f88b4;
+
+  /* ネオン */
+  --color-cyan: #4ce0d2;
+  --color-coral: #ff6b6b;
+  --color-sun: #ffd447;
+
+  --font-arcade: "Press Start 2P", monospace;
+  --font-pixel: "DotGothic16", "MS Gothic", monospace;
+  --font-body: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-abyss);
+  }
+
+  body {
+    font-family: var(--font-body);
+    /* 日本語は 400 だと暗背景で痩せて見える。500 を基準にする */
+    font-weight: 500;
+    color: var(--color-foam);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* 日本語は行間を取りすぎると視線が迷子になる。1.9 前後で止める */
+  p {
+    line-height: 1.9;
+  }
+
+  ::selection {
+    background: var(--color-cyan);
+    color: var(--color-abyss);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-sun);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* ドット絵は補間せずにカクカクのまま拡大する */
+  .pixelated {
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+
+  /* レトロゲームのダイアログ枠：角丸ゼロ＋ハードシャドウ */
+  .pixel-window {
+    position: relative;
+    border: 3px solid var(--color-cyan);
+    background: color-mix(in srgb, var(--color-deep) 92%, transparent);
+    box-shadow:
+      6px 6px 0 0 color-mix(in srgb, var(--color-abyss) 80%, transparent),
+      inset 0 0 0 3px var(--color-abyss);
+  }
+
+  /* 四隅の飾りドット */
+  .pixel-window::before,
+  .pixel-window::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--color-sun);
+  }
+  .pixel-window::before { top: 5px; left: 5px; }
+  .pixel-window::after { bottom: 5px; right: 5px; }
+
+  /* 押し込めるボタン */
+  .pixel-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 3px solid var(--color-abyss);
+    padding: 0.9rem 1.6rem;
+    font-family: var(--font-pixel);
+    font-size: 1.05rem;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 5px 5px 0 0 var(--color-abyss);
+    transition: transform 80ms steps(2), box-shadow 80ms steps(2);
+  }
+  .pixel-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 0 var(--color-abyss);
+  }
+  .pixel-button:active {
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 0 var(--color-abyss);
+  }
+
+  /* 走査線。うっすらCRT */
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.16) 0px,
+      rgba(0, 0, 0, 0.16) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: multiply;
+  }
+}
+
+@layer utilities {
+  .text-shadow-pixel {
+    text-shadow: 4px 4px 0 var(--color-abyss);
+  }
+  .text-shadow-pixel-sm {
+    text-shadow: 2px 2px 0 var(--color-abyss);
+  }
+}
+
+/* ── アニメーション ───────────────────────────── */
+
+@keyframes swim {
+  from { transform: translateX(-20vw); }
+  to { transform: translateX(120vw); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translateY(-90vh) translateX(14px); opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.animate-bob { animation: bob 3s steps(8, end) infinite; }
+.animate-blink { animation: blink 1.1s steps(1, end) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
