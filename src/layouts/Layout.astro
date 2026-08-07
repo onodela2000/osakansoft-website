@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, description = site.description } = Astro.props;
-const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | 小田原のソフトウェア開発会社`;
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | 小田原のぷろぐらみん屋さん`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 ---
 
@@ -28,16 +28,18 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/og.png", site.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL("/og.png", site.url).href} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#060b18" />
+    <meta name="theme-color" content="#f8f5ec" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap"
     />
 
     <script
@@ -61,10 +63,10 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     />
   </head>
 
-  <body class="bg-abyss">
+  <body>
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-sun focus:px-4 focus:py-2 focus:font-pixel focus:text-abyss"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-sun focus:px-4 focus:py-2 focus:font-body focus:text-abyss"
     >
       本文へ移動
     </a>

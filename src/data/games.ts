@@ -2,6 +2,7 @@
 
 import pixelPopDjShot from "../assets/games/pixel-pop-dj.png";
 import osushiShot from "../assets/games/osushi.png";
+import quizPartyShot from "../assets/games/quiz-party-screen-v2.png";
 
 export type Game = {
   slug: string;
@@ -56,5 +57,23 @@ export const games: Game[] = [
     ],
     shot: osushiShot,
     palette: { bg: "#0f1420", fg: "#f4ede1", accent: "#e5544b" },
+  },
+  {
+    slug: "quiz-party",
+    title: "Quiz Party JP",
+    titleEn: "QUIZ PARTY JP",
+    copy: "スマホで集まる、リアルタイムクイズ大会",
+    description:
+      "飲み会や研修、学校イベントなどで使えるクイズ大会サービス。クイズをつくってURLを共有すれば、参加者はスマホからすぐに参加できます。回答の集計から正解発表、ランキングまでリアルタイムで進みます。",
+    url: "https://quizparty.jp/",
+    year: "2026",
+    status: "PLAYABLE",
+    tech: ["Next.js", "TypeScript", "Supabase", "Realtime"],
+    notes: [
+      "参加者はログイン不要。共有されたURLを開くだけで、その場のクイズ大会に参加できます。",
+      "出題・回答・集計・結果発表をリアルタイムにつなぎ、会場でみんなが一緒に楽しめる流れをつくりました。",
+    ],
+    shot: quizPartyShot,
+    palette: { bg: "#15130d", fg: "#fff9e7", accent: "#f6c453" },
   },
 ];

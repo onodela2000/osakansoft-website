@@ -1,46 +1,6 @@
 ---
-import PixelSprite from "./PixelSprite.astro";
-import { logoFish, minnow } from "../data/sprites";
 import { site } from "../data/site";
 ---
-
-<footer class="relative overflow-hidden border-t-2 border-shallow/60 bg-deep">
-  <!-- 海底のドット -->
-  <div class="absolute inset-x-0 bottom-0 h-8 bg-sea/40" aria-hidden="true"></div>
-
-  <div class="relative mx-auto max-w-6xl px-4 py-14 sm:px-6">
-    <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-      <div>
-        <a href="/" class="flex items-center gap-3" aria-label="ページ上部へ戻る">
-          <PixelSprite sprite={logoFish} width={40} />
-          <span class="font-pixel text-xl text-foam">おさかなソフト</span>
-        </a>
-        <p class="mt-4 max-w-sm text-sm leading-relaxed text-mist">
-          神奈川県小田原市のソフトウェア開発会社です。<br />
-          受託開発から、自分たちで作るゲームまで。
-        </p>
-        <a
-          href={`mailto:${site.email}`}
-          class="mt-5 inline-block font-pixel text-lg text-cyan underline decoration-cyan/40 underline-offset-4 hover:decoration-cyan"
-        >
-          {site.email}
-        </a>
-      </div>
-
-      <nav class="grid grid-cols-2 gap-x-10 gap-y-2 text-sm" aria-label="フッターナビゲーション">
-        <a href="/#about" class="text-mist hover:text-cyan">このかいしゃ</a>
-        <a href="/#services" class="text-mist hover:text-cyan">できること</a>
-        <a href="/playground" class="text-mist hover:text-cyan">あそびば</a>
-        <a href="/#company" class="text-mist hover:text-cyan">かいしゃ情報</a>
-        <a href="/#contact" class="text-mist hover:text-cyan">おといあわせ</a>
-      </nav>
-    </div>
-
-    <div
-      class="mt-12 flex items-center justify-between border-t border-shallow/50 pt-6 font-arcade text-[10px] text-dim"
-    >
-      <small>© 2026 {site.nameEn}</small>
-      <PixelSprite sprite={minnow} width={38} class="animate-bob" />
-    </div>
-  </div>
+<footer class="wave-footer">
+  <div class="wave-shell"><a href="/" class="brand"><span class="brand-fish" aria-hidden="true"></span><span>おさかなソフト</span></a><small>© 2026 {site.nameEn}</small></div>
 </footer>

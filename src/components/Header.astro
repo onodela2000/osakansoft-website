@@ -1,75 +1,22 @@
 ---
-import PixelSprite from "./PixelSprite.astro";
-import { logoFish } from "../data/sprites";
 import { site } from "../data/site";
-
 const nav = [
-  { href: "/#about", label: "このかいしゃ" },
-  { href: "/#services", label: "できること" },
-  { href: "/playground", label: "あそびば" },
-  { href: "/#company", label: "かいしゃ情報" },
+  { href: "/#about", label: "おさかなソフト" },
+  { href: "/#work", label: "おしごと" },
+  { href: "/#playground", label: "あそびば" },
+  { href: "/#media", label: "おさかな通信" },
 ];
 ---
-
-<header class="fixed inset-x-0 top-0 z-40 border-b-2 border-shallow/60 bg-abyss/90 backdrop-blur-sm">
-  <div class="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
-    <a href="/" class="flex shrink-0 items-center gap-2" aria-label={`${site.short} ホーム`}>
-      <PixelSprite sprite={logoFish} width={30} class="sm:w-[34px]" />
-      <span class="font-pixel text-base leading-none tracking-wide text-foam sm:text-lg">
-        おさかなソフト
-      </span>
-    </a>
-
-    <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="メインナビゲーション">
-      {
-        nav.map((item) => (
-          <a
-            href={item.href}
-            class="group relative px-3 py-2 font-pixel text-sm text-mist transition-colors hover:text-cyan"
-          >
-            <span class="absolute -left-1 text-cyan opacity-0 transition-opacity group-hover:opacity-100">
-              ▸
-            </span>
-            {item.label}
-          </a>
-        ))
-      }
+<header class="site-header wave-header">
+  <div class="wave-shell header-inner">
+    <a href="/" class="brand" aria-label={`${site.short} ホーム`}><span class="brand-fish" aria-hidden="true"></span><span>おさかなソフト</span></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href={`mailto:${site.email}`} class="nav-contact">お問い合わせ</a>
     </nav>
-
-    <a
-      href={`mailto:${site.email}`}
-      class="pixel-button ml-auto shrink-0 bg-coral px-3 py-2.5 text-[0.78rem] text-abyss sm:px-4 sm:text-[0.85rem] md:ml-2"
-    >
-      そうだんする
-    </a>
-
-    {/* モバイル用メニュー。JSなしで開閉できる details を使う */}
-    <details class="group relative shrink-0 md:hidden">
-      <summary
-        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center border-2 border-shallow text-foam [&::-webkit-details-marker]:hidden"
-        aria-label="メニューを開く"
-      >
-        <span class="flex flex-col gap-[5px]">
-          <span class="block h-[3px] w-5 bg-foam"></span>
-          <span class="block h-[3px] w-5 bg-foam"></span>
-          <span class="block h-[3px] w-5 bg-foam"></span>
-        </span>
-      </summary>
-      <nav
-        class="pixel-window absolute right-0 z-50 mt-3 w-56 bg-deep p-2"
-        aria-label="メインナビゲーション"
-      >
-        {
-          nav.map((item) => (
-            <a
-              href={item.href}
-              class="block border-b border-shallow/50 px-4 py-3.5 font-pixel text-base text-foam last:border-b-0 hover:text-cyan"
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
+    <details class="mobile-menu">
+      <summary aria-label="メニューを開く"><span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span></summary>
+      <nav aria-label="モバイルナビゲーション">{nav.map((item) => <a href={item.href}>{item.label}</a>)}<a href={`mailto:${site.email}`}>お問い合わせ</a></nav>
     </details>
   </div>
 </header>

@@ -9,56 +9,29 @@ interface Props {
 const { game } = Astro.props;
 ---
 
-<article class="group">
-  <a href={`/playground/${game.slug}`} class="block">
-    <div
-      class="scanlines relative aspect-[16/10] overflow-hidden border-[3px] border-foam/90 transition-transform duration-150 group-hover:-translate-y-1"
-      style="box-shadow: 7px 7px 0 0 var(--color-abyss);"
-    >
-      <Image
-        src={game.shot}
-        alt={`${game.title} のスクリーンショット`}
-        widths={[400, 800, 1200]}
-        sizes="(max-width: 640px) 100vw, 46vw"
-        class="h-full w-full object-cover object-top"
-        loading="lazy"
-      />
-      <span
-        class="absolute top-0 right-0 border-l-[3px] border-b-[3px] border-foam/90 px-2.5 py-1.5 font-arcade text-[9px]"
-        style={`background:${game.palette.accent}; color:${game.palette.fg};`}
-      >
-        {game.status}
-      </span>
-    </div>
+<article class="game-card">
+  <a href={`/playground/${game.slug}`} class="game-image">
+    <Image
+      src={game.shot}
+      alt={`${game.title} のスクリーンショット`}
+      widths={[400, 800, 1200]}
+      sizes="(max-width: 680px) 86vw, 560px"
+      loading="lazy"
+    />
+    <span class="game-status">{game.status}</span>
   </a>
 
-  <div class="mt-5">
-    <div class="flex items-baseline gap-3">
-      <h3 class="font-pixel text-3xl text-foam">
-        <a href={`/playground/${game.slug}`} class="hover:text-cyan">{game.title}</a>
-      </h3>
-      <span class="font-arcade text-[10px] text-dim">{game.year}</span>
-    </div>
+  <div class="game-meta">
+    <span>{game.year}</span>
+    <span>自主制作</span>
+  </div>
+  <h3><a href={`/playground/${game.slug}`}>{game.title}</a></h3>
+  <p>{game.copy}</p>
 
-    <p class="mt-3 text-base font-medium text-foam/85">{game.copy}</p>
-
-    <div class="mt-5 flex flex-wrap gap-2.5">
-      <a
-        href={game.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="pixel-button bg-sun text-abyss"
-        style="font-size:0.95rem; padding:0.7rem 1.3rem;"
-      >
-        ▶ あそぶ
-      </a>
-      <a
-        href={`/playground/${game.slug}`}
-        class="pixel-button border-foam/60 bg-transparent text-foam"
-        style="font-size:0.95rem; padding:0.7rem 1.3rem; box-shadow: 5px 5px 0 0 var(--color-abyss);"
-      >
-        くわしく
-      </a>
-    </div>
+  <div class="game-actions">
+    <a href={game.url} target="_blank" rel="noopener noreferrer" class="pill-link pill-primary">
+      あそぶ <span aria-hidden="true">↗</span>
+    </a>
+    <a href={`/playground/${game.slug}`} class="pill-link">くわしく</a>
   </div>
 </article>
