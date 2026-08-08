@@ -1,21 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
-  <rect width="16" height="16" fill="#060b18"/>
-  <g fill="#ff6b6b">
-    <rect x="1" y="4" width="1" height="8"/>
-    <rect x="2" y="5" width="1" height="6"/>
-    <rect x="3" y="6" width="1" height="4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="おさかなソフト">
+  <!--
+    ロゴのシンボル（一本線のおさかな＝O）のファビコン版。
+    ロゴそのままだと16pxで線が消えるため、2点だけ最適化してある。
+      ・線幅をロゴの3.2%から6.1%（タイル比）に太らせた
+      ・尾びれのループを接合点まわりに1.9倍。穴が潰れず「O」として読める
+  -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B3648" />
+      <stop offset="1" stop-color="#2C7F80" />
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112.6" fill="url(#tile)" />
+
+  <g transform="translate(91.71 116.44) scale(0.664598)">
+    <path
+      d="M138 210
+         C84.8 124.5, 16.4 134, 16.4 210
+         C16.4 286, 84.8 295.5, 138 210
+         C190 120, 280 88, 360 112
+         C415 128, 453 165, 478 210
+         C453 255, 415 292, 360 308
+         C280 332, 190 300, 138 210"
+      fill="none"
+      stroke="#F8F5EC"
+      stroke-width="46.86"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </g>
-  <g fill="#4ce0d2">
-    <rect x="6" y="3" width="5" height="1"/>
-    <rect x="4" y="4" width="9" height="1"/>
-    <rect x="4" y="5" width="10" height="1"/>
-    <rect x="4" y="6" width="11" height="1"/>
-    <rect x="4" y="7" width="11" height="1"/>
-    <rect x="4" y="8" width="11" height="1"/>
-    <rect x="4" y="9" width="10" height="1"/>
-    <rect x="4" y="10" width="9" height="1"/>
-    <rect x="6" y="11" width="5" height="1"/>
-  </g>
-  <rect x="11" y="6" width="1" height="1" fill="#060b18"/>
-  <rect x="8" y="9" width="4" height="1" fill="#eef4ff"/>
 </svg>
