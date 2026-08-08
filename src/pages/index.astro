@@ -11,12 +11,12 @@ import homepageImage from "../assets/work-homepage-dummy-v3.png";
 import techAdvisoryImage from "../assets/work-tech-advisory-illustration-v9.png";
 
 const clientWorks = [
-  { no: "01", en: "AI LEARNING", title: "AIオンライン学習サービス", copy: "最新のAI活用を動画で学べる、受講者にも運営者にも使いやすい学習環境をつくっています。", image: aiLearningImage },
-  { no: "02", en: "AUCTION OPS", title: "オークション売買管理ツール", copy: "入札から精算・請求書発行までを一括化し、会場の売買を速く、正確に進められる仕組みをつくっています。", image: auctionImage },
-  { no: "03", en: "E-COMMERCE", title: "ECサイト開発", copy: "商品の一覧から購入まで、運営する人にも使いやすい売り場をつくります。", image: ecommerceImage },
-  { no: "04", en: "WORK AUTOMATION", title: "AIを使った業務自動化", copy: "定型作業や資料作成、データ整理を、無理のないところから効率化します。", image: automationImage },
-  { no: "05", en: "WEBSITE DESIGN", title: "ホームページ制作", copy: "ご予算や用途に合わせて、デザインから公開・運用まで支援しています。維持費を抑えた構成にも対応します。", image: homepageImage },
-  { no: "06", en: "TECH ADVISORY", title: "技術顧問・アドバイザー", copy: "技術選定からインフラ、リリースまで、開発の不安を一緒に整理しながら伴走します。", image: techAdvisoryImage },
+  { no: "01", en: "AI LEARNING", title: "AI活用のオンライン学習", image: aiLearningImage },
+  { no: "02", en: "AUCTION OPS", title: "オークション業務管理", image: auctionImage },
+  { no: "03", en: "E-COMMERCE", title: "グッズのECサイト", image: ecommerceImage },
+  { no: "04", en: "WORK AUTOMATION", title: "AIを使った業務自動化", image: automationImage },
+  { no: "05", en: "WEBSITE DESIGN", title: "ホームページ制作", image: homepageImage },
+  { no: "06", en: "TECH ADVISORY", title: "技術顧問・開発支援", image: techAdvisoryImage },
 ] as const;
 
 const mediaItems = [
@@ -110,7 +110,6 @@ const mediaItems = [
             </div>
             <div class="card-meta"><span>{work.no}</span><span>{work.en}</span></div>
             <h3>{work.title}</h3>
-            <p>{work.copy}</p>
           </article>
         ))}
       </div>
@@ -155,7 +154,7 @@ const mediaItems = [
     <div class="wave-shell">
       <header class="label-heading media-heading">
         <div><p>MEDIA</p><h2>おさかな通信</h2></div>
-        <p>つくっているものや、AIのこと、小さなスタジオのこと。これから少しずつ置いていく場所です。</p>
+        <p>つくる途中や、考えていることを、<br />少しずつ届けていきます。</p>
       </header>
 
       <div class="content-grid media-grid">
