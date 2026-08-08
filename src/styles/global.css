@@ -823,13 +823,23 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
   font-size: 17px;
 }
 
-.client-section .label-heading > p {
+.client-section .label-heading > p,
+.media-section .label-heading > p {
   margin-bottom: 5px;
   color: var(--ink);
   font-size: 17px;
   font-weight: 700;
   line-height: 1.7;
   text-align: right;
+}
+
+@media (min-width:681px) and (max-width:900px) {
+  .client-section .label-heading > p,
+  .media-section .label-heading > p {
+    width: 100%;
+    max-width: none;
+    justify-self: end;
+  }
 }
 
 .next-label-card h3 {
@@ -854,7 +864,8 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
     font-size: 16px;
   }
 
-  .client-section .label-heading > p {
+  .client-section .label-heading > p,
+  .media-section .label-heading > p {
     font-size: 16px;
     text-align: left;
   }
@@ -972,7 +983,18 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
 }
 
 .hero-wave {
+  margin-bottom: -1px;
   height: 76px;
+}
+
+.hero-wave::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
+  background: var(--sand);
 }
 
 .studio-company-block {
@@ -1178,6 +1200,61 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
 
   .media-grid {
     grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .media-card {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 16px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .media-card .media-visual {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 112px;
+    height: 84px;
+  }
+
+  .media-card .card-meta {
+    grid-column: 2;
+    margin: 0 0 5px;
+    font-size: 8px;
+  }
+
+  .media-card h3 {
+    grid-column: 2;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .media-card > p {
+    display: none;
+  }
+
+  .media-card .coming-label {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 8px;
+    padding: 4px 7px;
+    font-size: 8px;
+  }
+
+  .media-card .media-journal b {
+    font-size: 34px;
+  }
+
+  .media-card .media-journal span {
+    font-size: 6px;
+  }
+
+  .media-card .media-journal i {
+    display: none;
   }
 
   .client-visual {
