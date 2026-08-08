@@ -2,7 +2,8 @@
 
 import pixelPopDjShot from "../assets/games/pixel-pop-dj.png";
 import osushiShot from "../assets/games/osushi.png";
-import quizPartyShot from "../assets/games/quiz-party-screen-v2.png";
+import quizPartyHeroShot from "../assets/games/quiz-party-hero-real-ui.png";
+import quizPartyThumbnailShot from "../assets/games/quiz-party-thumbnail-real-ui.png";
 
 export type Game = {
   slug: string;
@@ -18,6 +19,8 @@ export type Game = {
   notes: string[];
   /** カードとヒーローに使うスクリーンショット（16:10 推奨） */
   shot: ImageMetadata;
+  /** 詳細ページやトップのヒーローで使う大きな画像。未指定時は shot を使用 */
+  heroShot?: ImageMetadata;
   palette: { bg: string; fg: string; accent: string };
 };
 
@@ -73,7 +76,8 @@ export const games: Game[] = [
       "参加者はログイン不要。共有されたURLを開くだけで、その場のクイズ大会に参加できます。",
       "出題・回答・集計・結果発表をリアルタイムにつなぎ、会場でみんなが一緒に楽しめる流れをつくりました。",
     ],
-    shot: quizPartyShot,
+    shot: quizPartyThumbnailShot,
+    heroShot: quizPartyHeroShot,
     palette: { bg: "#15130d", fg: "#fff9e7", accent: "#f6c453" },
   },
 ];
