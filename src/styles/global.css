@@ -977,13 +977,11 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
 
 .studio-what-we-do li {
   display: flex;
-  min-height: 48px;
+  min-height: 54px;
   align-items: center;
   gap: 12px;
   border-bottom: 1px solid var(--line);
   color: var(--navy-mid);
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .studio-what-we-do li:nth-child(odd) {
@@ -998,6 +996,337 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
 .studio-what-we-do li span {
   color: var(--teal);
   font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.studio-what-we-do li strong {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.studio-maker-link {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  width: 100%;
+  min-height: 72px;
+  margin-top: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px 6px 14px 6px;
+  background: rgba(255,255,255,.28);
+  transition: background 220ms ease, border-color 220ms ease;
+}
+
+.studio-maker-link:hover {
+  border-color: rgba(29,169,154,.34);
+  background: rgba(255,255,255,.52);
+}
+
+.studio-maker-visual {
+  position: relative;
+  overflow: hidden;
+  background: #acd5d5;
+}
+
+.studio-maker-visual img {
+  position: absolute;
+  right: -8%;
+  bottom: 0;
+  width: 114%;
+  max-width: none;
+}
+
+.studio-maker-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 13px;
+}
+
+.studio-maker-copy small {
+  color: var(--teal);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.studio-maker-copy > strong {
+  margin-top: 3px;
+  color: var(--navy-mid);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.studio-maker-copy > span {
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.studio-maker-copy i {
+  display: inline-block;
+  margin-left: 5px;
+  font-style: normal;
+  transition: transform 220ms ease;
+}
+
+.studio-maker-link:hover .studio-maker-copy i {
+  transform: translateX(4px);
+}
+
+.studio-maker-link:focus-visible,
+.maker-back:focus-visible,
+.maker-page-contact a:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+@media (min-width: 901px) {
+  .studio-maker-link {
+    margin-top: 28px;
+    margin-left: auto;
+  }
+}
+
+/* About the maker */
+.maker-page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 62px 0 86px;
+  background: radial-gradient(circle at 78% 30%, rgba(111,216,201,.28), transparent 340px), linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 46%, var(--ocean) 100%);
+  color: var(--white);
+}
+
+.maker-page-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px), linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(rgba(0,0,0,.8), transparent 95%);
+}
+
+.maker-page-hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 390px);
+  gap: 80px;
+  align-items: center;
+}
+
+.maker-back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-bottom: 36px;
+  color: rgba(255,255,255,.68);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.maker-page-label,
+.maker-story-heading > p,
+.maker-technical-area > p,
+.maker-page-contact > div > p {
+  margin: 0;
+  color: var(--mint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.maker-page-copy h1 {
+  margin: 10px 0 0;
+  font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+  line-height: 1.14;
+  letter-spacing: -.05em;
+}
+
+.maker-name {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  margin: 30px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.maker-name span {
+  color: rgba(255,255,255,.62);
+  font-size: 11px;
+}
+
+.maker-intro {
+  max-width: 550px;
+  margin: 18px 0 0;
+  color: rgba(255,255,255,.76);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.maker-page-portrait {
+  position: relative;
+  height: 360px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 48px 14px 48px 14px;
+  background: #acd5d5;
+  box-shadow: 0 28px 70px rgba(0,0,0,.18);
+}
+
+.maker-page-portrait img {
+  position: absolute;
+  right: -4%;
+  bottom: -6%;
+  width: 106%;
+  max-width: none;
+}
+
+.maker-page-body {
+  padding: 88px 0 96px;
+  background: var(--sand);
+}
+
+.maker-story-layout {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: 96px;
+}
+
+.maker-story-heading > p,
+.maker-technical-area > p {
+  color: var(--teal);
+}
+
+.maker-story-heading h2 {
+  margin: 12px 0 0;
+  color: var(--navy-mid);
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.24;
+  letter-spacing: -.04em;
+}
+
+.maker-story-copy > p {
+  max-width: 660px;
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.maker-story-copy .maker-story-lead {
+  margin-top: 0;
+  color: var(--navy-mid);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.maker-technical-area {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.maker-technical-area ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.maker-technical-area li {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  color: var(--navy-mid);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.maker-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 70px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.maker-values article {
+  min-height: 210px;
+  padding: 26px 28px 30px;
+}
+
+.maker-values article + article {
+  border-left: 1px solid var(--line);
+}
+
+.maker-values article > span {
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.maker-values h3 {
+  margin: 28px 0 0;
+  color: var(--navy-mid);
+  font-size: 19px;
+}
+
+.maker-values p {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.maker-page-contact {
+  padding: 76px 0 82px;
+  background: var(--navy-mid);
+  color: var(--white);
+}
+
+.maker-page-contact > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px 64px;
+  align-items: end;
+}
+
+.maker-page-contact > div > p {
+  grid-column: 1 / -1;
+}
+
+.maker-page-contact h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.2;
+  letter-spacing: -.04em;
+}
+
+.maker-page-contact a {
+  display: flex;
+  min-width: 300px;
+  min-height: 64px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.maker-page-contact a span {
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: .7;
 }
 
 /* The service list now lives in About, so the first view can stay compact. */
@@ -1137,6 +1466,24 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
   .hero-layout {
     min-height: auto;
   }
+
+  .maker-page-hero-inner {
+    grid-template-columns: 1fr minmax(260px, 320px);
+    gap: 48px;
+  }
+
+  .maker-page-portrait {
+    height: 320px;
+  }
+
+  .maker-story-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .maker-story-heading h2 br {
+    display: none;
+  }
 }
 
 @media (max-width: 680px) {
@@ -1162,9 +1509,8 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
   }
 
   .studio-what-we-do li {
-    min-height: 44px;
+    min-height: 50px;
     gap: 8px;
-    font-size: 12px;
   }
 
   .studio-what-we-do li:nth-child(odd) {
@@ -1173,6 +1519,116 @@ body { background: var(--paper); color: var(--ink); font-family: "Zen Maru Gothi
 
   .studio-what-we-do li:nth-child(even) {
     padding-left: 10px;
+    border-left: 1px solid var(--line);
+  }
+
+  .studio-what-we-do li strong {
+    font-size: 11.5px;
+  }
+
+  .studio-maker-link {
+    grid-template-columns: 62px 1fr;
+    min-height: 72px;
+    border-radius: 14px 6px 14px 6px;
+  }
+
+  .studio-maker-copy {
+    padding: 8px 12px;
+  }
+
+  .studio-maker-copy > strong {
+    font-size: 12px;
+  }
+
+  .maker-page-hero {
+    padding: 36px 0 60px;
+  }
+
+  .maker-page-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .maker-back {
+    margin-bottom: 22px;
+  }
+
+  .maker-page-copy h1 {
+    font-size: 2.35rem;
+  }
+
+  .maker-name {
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 22px;
+  }
+
+  .maker-intro {
+    font-size: 14px;
+  }
+
+  .maker-page-portrait {
+    height: 260px;
+    border-radius: 34px 10px 34px 10px;
+  }
+
+  .maker-page-portrait img {
+    right: 2%;
+    bottom: -18%;
+    width: 92%;
+  }
+
+  .maker-page-body {
+    padding: 62px 0 68px;
+  }
+
+  .maker-story-heading h2 {
+    font-size: 1.9rem;
+  }
+
+  .maker-story-copy .maker-story-lead {
+    font-size: 18px;
+  }
+
+  .maker-story-copy > p {
+    font-size: 14px;
+  }
+
+  .maker-values {
+    grid-template-columns: 1fr;
+    margin-top: 48px;
+  }
+
+  .maker-values article {
+    min-height: 0;
+    padding: 22px 0 24px;
+  }
+
+  .maker-values article + article {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .maker-values h3 {
+    margin-top: 16px;
+  }
+
+  .maker-page-contact {
+    padding: 60px 0 64px;
+  }
+
+  .maker-page-contact > div {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .maker-page-contact h2 {
+    font-size: 2rem;
+  }
+
+  .maker-page-contact a {
+    min-width: 0;
+    width: 100%;
   }
 
   .hero-layout {
