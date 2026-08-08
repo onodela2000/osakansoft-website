@@ -17,7 +17,7 @@ export const companyProfile: ReadonlyArray<readonly [string, string]> = [
   ["設立", "2026年6月"],
   ["資本金", "300,000円"],
   ["所在地", "神奈川県小田原市本町1丁目5番4号"],
-  ["事業内容", "システム開発 / AI導入支援 / 技術顧問 / 企業向けAI勉強会 / 自主制作"],
+  ["事業内容", "システム・アプリ開発 / ホームページ・ECサイト制作 / AI導入・業務改善支援 / 技術顧問・IT相談 / 企業向けAI勉強会"],
 ];
 
 export const services = [
