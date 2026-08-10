@@ -9,11 +9,14 @@ import ecommerceImage from "../assets/work-ecommerce-goods-v2.png";
 import automationImage from "../assets/work-automation-v2.png";
 import homepageImage from "../assets/work-homepage-dummy-v3.png";
 import techAdvisoryImage from "../assets/work-tech-advisory-illustration-v9.png";
+import heroWorkLearningImage from "../assets/hero/hero-work-learning-v1.png";
+import heroWorkEcommerceImage from "../assets/hero/hero-work-ecommerce-v1.png";
+import heroWorkAdvisoryImage from "../assets/hero/hero-work-advisory-v1.png";
 
 const clientWorks = [
-  { no: "01", en: "AI LEARNING", title: "AI活用のオンライン学習", image: aiLearningImage },
+  { no: "01", en: "LEARNING PLATFORM", title: "動画学習サービス", image: aiLearningImage },
   { no: "02", en: "AUCTION OPS", title: "オークション業務管理", image: auctionImage },
-  { no: "03", en: "E-COMMERCE", title: "グッズのECサイト", image: ecommerceImage },
+  { no: "03", en: "E-COMMERCE", title: "グッズECサイト", image: ecommerceImage },
   { no: "04", en: "WORK AUTOMATION", title: "AIを使った業務自動化", image: automationImage },
   { no: "05", en: "WEBSITE DESIGN", title: "ホームページ制作", image: homepageImage },
   { no: "06", en: "TECH ADVISORY", title: "技術顧問・開発支援", image: techAdvisoryImage },
@@ -38,22 +41,29 @@ const mediaItems = [
     <div class="wave-shell hero-layout">
       <div class="hero-copy">
         <p class="hero-place">小田原のぷろぐらみん屋さん</p>
-        <h1 id="hero-title">仕事は、ていねいに。<br />ものづくりは、自由に。</h1>
-        <p class="hero-about">おさかなソフトは、小田原の小さなソフトウェアスタジオです。</p>
+        <h1 id="hero-title">
+          <span>仕事は、ていねいに。</span>
+          <span>ものづくりは、自由に。</span>
+        </h1>
+        <p class="hero-about">おさかなソフトは、小田原の小さな<span>ソフトウェアスタジオです。</span></p>
       </div>
 
       <div class="hero-collage" aria-label="おさかなソフトの制作イメージ">
         <div class="collage-main">
-          <img src="/member-illustration.png" alt="パソコンを持つ小野寺一輝のイラスト" width="500" height="500" />
-          <span>SOFTWARE STUDIO</span>
+          <Image
+            src={heroWorkLearningImage}
+            alt="動画学習サービスの画面イメージ"
+            widths={[640, 960, 1280, 1536]}
+            sizes="(max-width: 680px) 55vw, (max-width: 1024px) 100vw, 600px"
+            quality={92}
+            loading="eager"
+          />
         </div>
-        <div class="collage-code" aria-hidden="true">
-          <p>WEB</p><p>AI</p><p>APP</p>
-          <i></i><i></i><i></i>
+        <div class="collage-code">
+          <Image src={heroWorkEcommerceImage} alt="グッズECサイトの画面イメージ" widths={[320, 560]} sizes="(max-width: 680px) 40vw, 220px" loading="eager" />
         </div>
         <div class="collage-game">
-          <Image src={games[0].shot} alt={`${games[0].title} の画面`} widths={[360,720]} sizes="260px" loading="eager" />
-          <span>PLAYGROUND</span>
+          <Image src={heroWorkAdvisoryImage} alt="技術顧問・開発支援のイメージ" widths={[320, 560]} sizes="(max-width: 680px) 40vw, 220px" loading="eager" />
         </div>
       </div>
     </div>
@@ -77,12 +87,43 @@ const mediaItems = [
         <div class="studio-what-we-do">
           <p>WHAT WE DO</p>
           <ul aria-label="事業内容">
-            <li><span>01</span>システム開発</li>
-            <li><span>02</span>AI導入</li>
-            <li><span>03</span>技術顧問</li>
-            <li><span>04</span>AI勉強会</li>
+            <li>
+              <span>01</span>
+              <strong>システム・アプリ開発</strong>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>ホームページ・EC制作</strong>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>AI導入・業務自動化</strong>
+            </li>
+            <li>
+              <span>04</span>
+              <strong>インフラ構築・運用</strong>
+            </li>
+            <li>
+              <span>05</span>
+              <strong>技術顧問・開発支援</strong>
+            </li>
+            <li>
+              <span>06</span>
+              <strong>企業向けAI勉強会</strong>
+            </li>
           </ul>
         </div>
+
+        <a class="studio-maker-link" href="/people/kazuki-onodera/">
+          <span class="studio-maker-visual" aria-hidden="true">
+            <img src="/member-illustration.png" alt="" width="500" height="500" loading="lazy" />
+          </span>
+          <span class="studio-maker-copy">
+            <small>WHO MAKES IT</small>
+            <strong>相談した人が、そのままつくります。</strong>
+            <span>代表・エンジニアについて <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
 
       </div>
     </div>

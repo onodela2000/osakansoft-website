@@ -25,7 +25,7 @@ const others = games.filter((candidate) => candidate.slug !== game.slug);
 
       <div class="game-shot">
         <Image
-          src={game.shot}
+          src={game.heroShot ?? game.shot}
           alt={`${game.title} のプレイ画面`}
           widths={[600, 1000, 1400]}
           sizes="(max-width: 1024px) 100vw, 1050px"

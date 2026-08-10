@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { site } from "../../data/site";
+
+const technicalAreas = [
+  "Webシステム",
+  "Webサービス",
+  "アプリ開発",
+  "ホームページ・EC",
+  "アーキテクチャ",
+  "インフラ",
+  "リリース・運用",
+  "AI・業務自動化",
+] as const;
+---
+
+<Layout
+  title="つくっている人"
+  description="おさかなソフトの代表・エンジニア、小野寺一輝について。相談から設計・実装まで、同じ人が一緒に考えます。"
+>
+  <section class="maker-page-hero">
+    <div class="maker-page-grid" aria-hidden="true"></div>
+    <div class="wave-shell maker-page-hero-inner">
+      <div class="maker-page-copy">
+        <a href="/#about" class="maker-back">← おさかなソフトについて</a>
+        <p class="maker-page-label">WHO MAKES IT</p>
+        <h1>つくっている人</h1>
+        <p class="maker-name">小野寺 一輝 <span>代表・エンジニア</span></p>
+        <p class="maker-intro">相談を聞くところから、設計、実装、公開まで。おさかなソフトでは、基本的に同じ人が一緒に考え、手を動かします。</p>
+      </div>
+
+      <figure class="maker-page-portrait">
+        <img src="/member-illustration.png" alt="パソコンを持つ小野寺一輝のイラスト" width="500" height="500" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="maker-page-body">
+    <div class="wave-shell maker-story-layout">
+      <div class="maker-story-heading">
+        <p>HOW I WORK</p>
+        <h2>技術を、<br />話しやすく。</h2>
+      </div>
+
+      <div class="maker-story-copy">
+        <p class="maker-story-lead">詳しい言葉を知らなくても、大丈夫です。</p>
+        <p>システムやAIの相談は、最初から答えが決まっていることのほうが少ないものです。「こんなことできる？」から話を聞いて、必要なものと、つくらなくていいものを一緒に整理します。</p>
+        <p>技術に詳しい方とは、設計やインフラ、リリースの話まで直接できます。プロジェクトの規模や内容に合わせて、信頼できる仲間とチームを組むこともあります。</p>
+
+        <div class="maker-technical-area">
+          <p>TECHNICAL TERRITORY</p>
+          <ul aria-label="対応できる技術領域">
+            {technicalAreas.map((area) => <li>{area}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="wave-shell maker-values">
+      <article>
+        <span>01</span>
+        <h3>まず、はなす</h3>
+        <p>要件が固まる前から、困っていることや、やってみたいことを聞きます。</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>小さく、ためす</h3>
+        <p>いきなり全部はつくらず、手応えを確かめられる大きさから始めます。</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>一緒に、そだてる</h3>
+        <p>公開して終わりではなく、使われ方を見ながら運用や改善を支えます。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="maker-page-contact">
+    <div class="wave-shell">
+      <p>CONTACT</p>
+      <h2>技術の話も、<br />まだ曖昧な相談も。</h2>
+      <a href={`mailto:${site.email}`}>メールで相談する <span>{site.email}</span></a>
+    </div>
+  </section>
+</Layout>

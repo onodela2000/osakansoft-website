@@ -77,5 +77,73 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
       <slot />
     </main>
     <Footer />
+
+    <script>
+      const sectionScrollKey = "osakanasoft:section-scroll";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const cleanSectionUrl = () => {
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+      };
+
+      const scrollToSection = (hash: string, smooth = true) => {
+        if (!hash.startsWith("#")) return false;
+
+        const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+        if (!target) return false;
+
+        target.scrollIntoView({
+          behavior: smooth && !reduceMotion.matches ? "smooth" : "auto",
+          block: "start",
+        });
+        cleanSectionUrl();
+        return true;
+      };
+
+      document.addEventListener("click", (event) => {
+        const origin = event.target;
+        if (!(origin instanceof Element)) return;
+
+        const link = origin.closest<HTMLAnchorElement>("a[data-section-link]");
+        if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        const destination = new URL(link.href, window.location.href);
+        if (destination.origin !== window.location.origin || !destination.hash) return;
+
+        const samePage = destination.pathname === window.location.pathname && destination.search === window.location.search;
+        if (samePage && document.getElementById(decodeURIComponent(destination.hash.slice(1)))) {
+          event.preventDefault();
+          link.closest("details")?.removeAttribute("open");
+          scrollToSection(destination.hash);
+          return;
+        }
+
+        event.preventDefault();
+        try {
+          window.sessionStorage.setItem(sectionScrollKey, destination.hash);
+          window.location.assign(`${destination.pathname}${destination.search}`);
+        } catch {
+          window.location.assign(`${destination.pathname}${destination.search}${destination.hash}`);
+        }
+      });
+
+      const restoreSectionScroll = () => {
+        let hash = window.location.hash;
+        try {
+          hash ||= window.sessionStorage.getItem(sectionScrollKey) ?? "";
+          window.sessionStorage.removeItem(sectionScrollKey);
+        } catch {
+          // Storageが使えない環境でも、URLのハッシュによる移動は維持する。
+        }
+
+        if (hash) window.requestAnimationFrame(() => scrollToSection(hash));
+      };
+
+      if (document.readyState === "complete") {
+        restoreSectionScroll();
+      } else {
+        window.addEventListener("load", restoreSectionScroll, { once: true });
+      }
+    </script>
   </body>
 </html>
